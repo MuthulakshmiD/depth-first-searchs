@@ -54,6 +54,33 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
+<h3>program</h3>
+
+```
+
+from collections import defaultdict
+def dfs(graph,start,visited,path):
+    path.append(start)
+    visited[start]=True
+    for neighbour in graph[start]:
+       if visited[neighbour]==False:
+            dfs(graph,neighbour,visited,path)
+            visited[neighbour]=True
+    return path
+graph=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split(' '))
+    graph[u].append(v)
+    graph[v].append(u)
+start='A'
+visited=defaultdict(bool)
+path=[]
+traversedpath=dfs(graph,start,visited,path)
+print(traversedpath)
+
+```
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -88,38 +115,9 @@ F H <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 
-## Program:
-```python
-from collections import defaultdict
-def dfs(graph,start,visited,path):
-    path.append(start)
-    visited[start]=True
-    for neighbour in graph[start]:
-       #type ur code here
-       if not visited[neighbour]:
-        dfs(graph,neighbour,visited,path)
-    return path
-graph=defaultdict(list)
-n,e=map(int,input().split())
-for i in range(e):
-   #type ur code here
-    u,v=input().split()
-    graph[u].append(v)
-    graph[v].append(u)
-#print(graph)
-start='A'
-visited=defaultdict(bool)
- #type ur code here
-path=[]
-traversedpath=dfs(graph,start,visited,path)
-print(traversedpath)
-```
-## Output:
-<img width="441" height="273" alt="image" src="https://github.com/user-attachments/assets/f84a2cb8-6f78-43b9-971c-b5fe0cf720bc" />
-
-
 <hr>
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
+
 
